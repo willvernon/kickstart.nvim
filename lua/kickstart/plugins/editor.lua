@@ -1,6 +1,6 @@
 return {
-    { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-{ -- Add indentation guides even on blank lines
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  { -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
@@ -8,36 +8,9 @@ return {
     opts = {},
   },
   -- Editor: General editor enhancements
-  {'tpope/vim-sleuth'}, -- Detect tabstop and shiftwidth
-  { -- Autoformatting
-    'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
-    keys = {
-      { '<leader>f', function() require('conform').format { async = true, lsp_format = 'fallback' } end, mode = '', desc = '[F]ormat buffer' },
-    },
-    opts = {
-      notify_on_error = false,
-      format_on_save = function(bufnr) -- Format on save settings
-        local disable_filetypes = { c = true, cpp = true }
-        local lsp_format_opt
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          lsp_format_opt = 'never'
-        else
-          lsp_format_opt = 'fallback'
-        end
-        return {
-          timeout_ms = 500,
-          lsp_format = lsp_format_opt,
-        }
-      end,
-      formatters_by_ft = {
-        lua = { 'stylua' },
-      },
-    },
-  },
+  { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth
   -- Completion ===========================================================
-  {-- autopairs
+  { -- autopairs
     'windwp/nvim-autopairs',
     config = function()
       require('nvim-autopairs').setup {}
@@ -154,7 +127,7 @@ return {
           { name = 'nvim_lsp' },
           { name = 'path' },
           { name = 'nvim_lsp_signature_help' },
-           -- { name = 'otter' }, -- for code chunks in quarto
+          { name = 'otter' }, -- for code chunks in quarto
           { name = 'path' },
           { name = 'luasnip', keyword_length = 3, max_item_count = 3 },
           { name = 'pandoc_references' },
@@ -188,10 +161,10 @@ return {
     branch = 'master',
     config = true,
   },
-    { -- format things as tables
+  { -- format things as tables
     'godlygeek/tabular',
   },
-    { -- generate docstrings
+  { -- generate docstrings
     'danymat/neogen',
     cmd = { 'Neogen' },
     dependencies = 'nvim-treesitter/nvim-treesitter',
@@ -253,5 +226,5 @@ return {
       'nvim-lua/plenary.nvim',
     },
   },
-
 }
+

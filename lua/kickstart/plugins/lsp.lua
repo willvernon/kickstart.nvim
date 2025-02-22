@@ -1,5 +1,5 @@
-return{
-   -- LSP: Language Server Protocol plugins
+return {
+  -- LSP: Language Server Protocol plugins
   { -- Lua LSP for Neovim config
     'folke/lazydev.nvim',
     ft = 'lua',
@@ -9,7 +9,7 @@ return{
       },
     },
   },
-   {
+  {
 
     -- for lsp features in code cells / embedded code
     'jmbuhr/otter.nvim',
@@ -23,7 +23,7 @@ return{
     opts = {
       verbose = {
         no_code_found = false,
-      }
+      },
     },
   },
 
@@ -108,8 +108,12 @@ return{
           map('gh', vim.lsp.buf.signature_help, '[g]o to signature [h]elp')
           map('gI', vim.lsp.buf.implementation, '[g]o to [I]mplementation')
           map('gr', vim.lsp.buf.references, '[g]o to [r]eferences')
-          map('[d', function () vim.diagnostic.jump({count = 1}) end,'previous [d]iagnostic ')
-          map(']d', function () vim.diagnostic.jump({count = -1}) end, 'next [d]iagnostic ')
+          map('[d', function()
+            vim.diagnostic.jump { count = 1 }
+          end, 'previous [d]iagnostic ')
+          map(']d', function()
+            vim.diagnostic.jump { count = -1 }
+          end, 'next [d]iagnostic ')
           map('<leader>ll', vim.lsp.codelens.run, '[l]ens run')
           map('<leader>lR', vim.lsp.buf.rename, '[l]sp [R]ename')
           map('<leader>lf', vim.lsp.buf.format, '[l]sp [f]ormat')
@@ -136,17 +140,20 @@ return{
       -- markdown.file_extensions = ["md", "markdown", "qmd"]
       lspconfig.marksman.setup {
         capabilities = capabilities,
-        filetypes = { 'markdown', 'quarto' },
+        filetypes = { 'markdown', 'server', 'quarto' },
         root_dir = util.root_pattern('.git', '.marksman.toml', '_quarto.yml'),
+        folderFeatures = {
+          enabled = true,
+          maxDepth = 5, -- Limit scanning depth to prevent overload
+        },
       }
 
       lspconfig.r_language_server.setup {
-        cmd = {"r_language_server"},
         capabilities = capabilities,
         flags = lsp_flags,
         settings = {
           r = {
-            r_path = "/opt/homebrew/Caskroom/miniforge/base/envs/ml_env",
+            r_path = '/opt/homebrew/Caskroom/miniforge/base/envs/ml_env/lib/R',
             lsp = {
               rich_documentation = false,
             },
@@ -156,13 +163,13 @@ return{
       lspconfig.pyright.setup {
         settings = {
           python = {
-            pythonPath = '/opt/homebrew/Caskroom/miniforge/base/envs/ml_env',
+            pythonPath = '/opt/homebrew/Caskroom/miniforge/base/envs/ml_env/lib/python',
             analysis = {
               autoSearchPaths = true,
               useLibraryCodeForTypes = true,
             },
           },
-        }
+        },
       }
       lspconfig.cssls.setup {
         capabilities = capabilities,
@@ -267,7 +274,6 @@ return{
         flags = lsp_flags,
       }
 
-
       lspconfig.julials.setup {
         capabilities = capabilities,
         flags = lsp_flags,
@@ -292,16 +298,16 @@ return{
       --   flags = lsp_flags,
       -- }
 
-      lspconfig.rust_analyzer.setup{
+      lspconfig.rust_analyzer.setup {
         capabilities = capabilities,
         settings = {
           ['rust-analyzer'] = {
             diagnostics = {
-              enable = false;
-            }
-          }
-        }
-     }
+              enable = false,
+            },
+          },
+        },
+      }
 
       -- lspconfig.ruff_lsp.setup {
       --   capabilities = capabilities,

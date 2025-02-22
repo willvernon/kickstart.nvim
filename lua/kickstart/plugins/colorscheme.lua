@@ -1,6 +1,6 @@
 return {
   {
-    "polirritmico/monokai-nightasty.nvim",
+    'polirritmico/monokai-nightasty.nvim',
     lazy = false,
     priority = 1000,
     keys = {
@@ -9,17 +9,17 @@ return {
     ---@module "monokai-nightasty"
     ---@type monokai.UserConfig
     opts = {
-      dark_style_background = "dark", -- default, dark, transparent, #RRGGBB
-      light_style_background = "default", -- default, dark, transparent, #RRGGBB
+      dark_style_background = 'dark', -- default, dark, transparent, #RRGGBB
+      light_style_background = 'default', -- default, dark, transparent, #RRGGBB
       color_headers = true, -- Enable header colors for each header level (h1, h2, etc.)
       lualine_bold = true, -- Lualine a and z sections font width
-      lualine_style = "dark", -- "dark", "light" or "default" (Follows dark/light style)
+      lualine_style = 'dark', -- "dark", "light" or "default" (Follows dark/light style)
       markdown_header_marks = true, -- Add headers marks highlights (the `#` character) to Treesitter highlight query
       -- Style to be applied to selected syntax groups. See `:help nvim_set_hl`
       hl_styles = {
         keywords = { italic = true },
         comments = { italic = true },
-        floats = "dark",
+        floats = 'dark',
       },
 
       -- This also could be a table like this: `terminal_colors = { Normal = { fg = "#e6e6e6" } }`
@@ -30,10 +30,10 @@ return {
       --- You can override specific color/highlights. Theme color values
       --- in `extras/palettes`. Also could be any hex RGB color you like.
       on_colors = function(colors)
-        if vim.o.background == "light" then
+        if vim.o.background == 'light' then
           -- Custom colors for light theme
-          colors.comment = "#2d7e79"
-          colors.lualine.normal_bg = "#7ebd00"
+          colors.comment = '#2d7e79'
+          colors.lualine.normal_bg = '#7ebd00'
         else
           -- Custom colors for dark theme
           colors.border = colors.magenta
@@ -45,7 +45,7 @@ return {
         -- You could add styles like bold, underline, italic
         highlights.TelescopeSelection = { bold = true }
         highlights.TelescopeBorder = { fg = colors.grey }
-        highlights["@lsp.type.property.lua"] = { fg = colors.fg }
+        highlights['@lsp.type.property.lua'] = { fg = colors.fg }
       end,
     },
     config = function(_, opts)
@@ -53,17 +53,17 @@ return {
       vim.opt.cursorline = true
 
       -- Default to dark theme
-      vim.o.background = "dark"  -- dark | light
+      vim.o.background = 'dark' -- dark | light
 
       -- Open new Nvim instances with the light theme when the sun hits the screen
-      local date_output = vim.api.nvim_exec2("!date +'\\%H\\%M'", { output = true })
-      local system_time = tonumber(string.match(date_output["output"], "%d%d%d%d"))
+      -- local date_output = vim.api.nvim_exec2("!date +'\\%H\\%M'", { output = true })
+      -- local system_time = tonumber(string.match(date_output["output"], "%d%d%d%d"))
       -- This sets theme color based on time of day
       -- if system_time >= 1345 and system_time < 1630 then
       --   vim.o.background = "light"
       -- end
 
-      require("monokai-nightasty").load(opts)
+      require('monokai-nightasty').load(opts)
     end,
   },
   { 'shaunsingh/nord.nvim', enabled = false, lazy = false, priority = 1000 },
@@ -72,8 +72,8 @@ return {
   {
     'catppuccin/nvim',
     name = 'catppuccin',
-    enabled = false,
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    enabled = true,
+    lazy = true, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- set colorscheme and overwrite highlights
@@ -86,8 +86,8 @@ return {
 
   {
     'oxfist/night-owl.nvim',
-    enabled = false,
-    lazy = false,
+    enabled = true,
+    lazy = true,
     priority = 1000,
     config = function()
       -- load the colorscheme here
@@ -99,8 +99,8 @@ return {
 
   {
     'rebelot/kanagawa.nvim',
-    enabled = false,
-    lazy = false,
+    enabled = true,
+    lazy = true,
     priority = 1000,
     config = function()
       require('kanagawa').setup {
@@ -121,7 +121,7 @@ return {
 
   {
     'olimorris/onedarkpro.nvim',
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 1000,
   },
