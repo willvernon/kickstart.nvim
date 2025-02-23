@@ -1,6 +1,5 @@
 -- Load global settings first
 require 'kickstart.global' -- Load global Neovim settings
-
 -- Autocommand for highlighting yanked text
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight yanked text',
@@ -34,14 +33,15 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Configure plugins with lazy.nvim
 require('lazy').setup({
-  { 'folke/which-key.nvim', -- Show pending keybinds
+  {
+    'folke/which-key.nvim', -- Show pending keybinds
     event = 'VimEnter',
     config = function()
       require('which-key').setup {}
       require 'kickstart.keymaps' -- Moved here to load after which-key
     end,
   },
-{ import = 'kickstart.plugins.code' },
+  { import = 'kickstart.plugins.code' },
   { import = 'kickstart.plugins.colorscheme' },
   { import = 'kickstart.plugins.debug' },
   { import = 'kickstart.plugins.dev' },
